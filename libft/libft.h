@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:21:40 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/08 14:56:40 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/08 17:53:27 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *));
 
-char			**ft_realloc(char **old_data, int length);
+void			*ft_realloc(void *ptr, size_t initial_size, size_t new_size);
 
 // Get next line
 char			*get_next_line(int fd);

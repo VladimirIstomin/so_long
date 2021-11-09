@@ -26,7 +26,7 @@ ${OBJ_DIR}:
 				@mkdir -p ${OBJ_DIR}
 
 ${NAME}:		${OBJS} ${LIBFT}
-				${CC} ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+				${CC} ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME} -Llibft -lft
 
 FORCE:			;
 

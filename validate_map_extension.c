@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validate_map_extension.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 12:34:10 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 14:01:27 by gmerlene         ###   ########.fr       */
+/*   Created: 2021/11/09 15:04:33 by gmerlene          #+#    #+#             */
+/*   Updated: 2021/11/09 16:47:28 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "so_long.h"
+#include "map_validators/map_validators.h"
 
-int	main(int argc, char **argv)
+int	validate_map_extension(char *file_name)
 {
-	void	*mlx;
-	void	*mlx_win;
-	//char	**map;
+	int	len;
 
-	(void)argv;
-	if (argc != 2)
-	{
-		ft_putstr_fd(ERROR_AGRC, 2);
-		return (0);
-	}
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "Hello, world!");
-	mlx_loop(mlx);
+	len = ft_strlen(file_name);
+	if (
+		len > 3
+		&& (
+			file_name[len - 4] == '.'
+			&& file_name[len - 3] == 'b'
+			&& file_name[len - 2] == 'e'
+			&& file_name[len - 1] == 'r'
+		)
+	)
+		return (1);
+	ft_puterror(ERROR_INVALID_MAP_EXTENSION);
 	return (0);
 }

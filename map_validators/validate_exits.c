@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validate_exits.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 12:34:10 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 14:01:27 by gmerlene         ###   ########.fr       */
+/*   Created: 2021/11/09 14:29:32 by gmerlene          #+#    #+#             */
+/*   Updated: 2021/11/09 16:14:47 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "so_long.h"
+#include "map_validators.h"
 
-int	main(int argc, char **argv)
+int	validate_exits(char **map)
 {
-	void	*mlx;
-	void	*mlx_win;
-	//char	**map;
+	int	i;
+	int	j;
 
-	(void)argv;
-	if (argc != 2)
+	i = 0;
+	while (map[i])
 	{
-		ft_putstr_fd(ERROR_AGRC, 2);
-		return (0);
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == MAP_EXIT)
+				return (1);
+			j++;
+		}
+		i++;
 	}
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "Hello, world!");
-	mlx_loop(mlx);
+	ft_puterror(ERROR_NO_EXITS);
 	return (0);
 }

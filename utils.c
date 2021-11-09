@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 12:34:10 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 14:01:27 by gmerlene         ###   ########.fr       */
+/*   Created: 2021/11/09 14:08:48 by gmerlene          #+#    #+#             */
+/*   Updated: 2021/11/09 15:07:07 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "so_long.h"
+#include "libft/libft.h"
 
-int	main(int argc, char **argv)
+void	ft_puterror(char *error)
 {
-	void	*mlx;
-	void	*mlx_win;
-	//char	**map;
-
-	(void)argv;
-	if (argc != 2)
-	{
-		ft_putstr_fd(ERROR_AGRC, 2);
-		return (0);
-	}
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "Hello, world!");
-	mlx_loop(mlx);
-	return (0);
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(error, 2);
+	ft_putchar_fd('\n', 2);
 }

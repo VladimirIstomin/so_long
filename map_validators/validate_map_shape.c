@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validate_map_shape.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 12:34:10 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 14:01:27 by gmerlene         ###   ########.fr       */
+/*   Created: 2021/11/09 14:27:55 by gmerlene          #+#    #+#             */
+/*   Updated: 2021/11/09 15:07:52 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "so_long.h"
+#include "map_validators.h"
 
-int	main(int argc, char **argv)
+int	validate_map_shape(char **map)
 {
-	void	*mlx;
-	void	*mlx_win;
-	//char	**map;
+	int	line_len;
+	int	line_len_tmp;
+	int	i;
 
-	(void)argv;
-	if (argc != 2)
+	line_len = 0;
+	i = 0;
+	while (map[i])
 	{
-		ft_putstr_fd(ERROR_AGRC, 2);
-		return (0);
+		line_len_tmp = ft_strlen(map[i]);
+		if (map[i][line_len_tmp - 1] == '\n')
+			line_len_tmp--;
+		if (!line_len)
+			line_len = line_len_tmp;
+		else if (line_len != line_len_tmp)
+		{
+			ft_puterror(ERROR_INVALID_MAP_SHAPE);
+			return (0);
+		}
+		i++;
 	}
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "Hello, world!");
-	mlx_loop(mlx);
-	return (0);
+	return (1);
 }

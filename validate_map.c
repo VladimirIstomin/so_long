@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 12:34:10 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 14:01:27 by gmerlene         ###   ########.fr       */
+/*   Created: 2021/11/09 12:25:39 by gmerlene          #+#    #+#             */
+/*   Updated: 2021/11/09 16:47:12 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "so_long.h"
+#include "map_validators/map_validators.h"
 
-int	main(int argc, char **argv)
+int	validate_map(char **map)
 {
-	void	*mlx;
-	void	*mlx_win;
-	//char	**map;
-
-	(void)argv;
-	if (argc != 2)
-	{
-		ft_putstr_fd(ERROR_AGRC, 2);
-		return (0);
-	}
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "Hello, world!");
-	mlx_loop(mlx);
-	return (0);
+	return (
+		validate_walls(map)
+		&& validate_exits(map)
+		&& validate_collectibles(map)
+		&& validate_player(map)
+		&& validate_map_shape(map)
+		&& validate_map_chars(map)
+	);
 }
