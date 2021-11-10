@@ -6,24 +6,11 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:43:41 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 12:24:15 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:12:15 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
 
 static void	read_map_from_fd(int fd, char ***map)
 {
@@ -58,11 +45,11 @@ char	**parse_map(int fd)
 	if (!map)
 		return (NULL);
 	read_map_from_fd(fd, &map);
-	if (errno)
+	if (!map[0])
 	{
-		perror("Error");
+		ft_puterror(ERROR_MAP_PARSING);
 		free_map(map);
-		map = NULL;
+		return (NULL);
 	}
 	return (map);
 }

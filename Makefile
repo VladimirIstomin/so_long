@@ -1,4 +1,12 @@
-SRCS			= main.c
+SRCS			= main.c utils.c parse_map.c\
+				validate_map.c validate_map_extension.c\
+				map_validators/validate_collectibles.c\
+				map_validators/validate_exits.c\
+				map_validators/validate_map_chars.c\
+				map_validators/validate_map_shape.c\
+				map_validators/validate_player.c\
+				map_validators/validate_walls.c\
+				init_mlx.c init_hooks.c
 
 OBJ_DIR			= obj/
 
@@ -10,9 +18,11 @@ NAME			= so_long
 
 LIBFT			= ./libft/libft.a
 
+HEADERS			= so_long.h map_validators/map_validators.h
+
 CC				= gcc
 
-FLAGS			= -Wall -Werror -Wextra -O3 -MMD
+FLAGS			= -Wall -Werror -Wextra -O3 -MMD -g
 
 ${OBJ_DIR}%.o: 	%.c
 				${CC} ${FLAGS} -Imlx -c $< -o $@
@@ -24,8 +34,9 @@ ${LIBFT}:		FORCE
 
 ${OBJ_DIR}:
 				@mkdir -p ${OBJ_DIR}
+				@mkdir -p ${OBJ_DIR}/map_validators
 
-${NAME}:		${OBJS} ${LIBFT}
+${NAME}:		${OBJS} ${LIBFT} ${HEADERS}
 				${CC} ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME} -Llibft -lft
 
 FORCE:			;
