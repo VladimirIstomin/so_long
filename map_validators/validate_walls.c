@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 12:29:43 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 16:11:24 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/11 16:44:52 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static int	check_solid_wall(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (!line[i + 1] && line[i] == '\n')
-			return (1);
-		else if (line[i] != MAP_WALL)
+		if (line[i] != MAP_WALL)
 			return (0);
 		i++;
 	}
@@ -33,8 +31,6 @@ static int	check_side_wall(char *line)
 	int	last_char_index;
 
 	last_char_index = (int)ft_strlen(line) - 1;
-	if (line[last_char_index] == '\n')
-		last_char_index--;
 	return (line[0] == MAP_WALL && line[last_char_index] == MAP_WALL);
 }
 

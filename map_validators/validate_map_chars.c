@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:01:29 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 16:26:59 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/11 16:43:49 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	check_valid_char(char **map, int i, int j)
 		|| map[i][j] == MAP_PLAYER
 		|| map[i][j] == MAP_COLLECTIBLE
 		|| map[i][j] == MAP_EMPTY_SPACE
-		|| (map[i][j] == '\n' && !map[i][j + 1])
 	)
 		return (1);
 	ft_puterror(ERROR_INVALID_CHAR);

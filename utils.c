@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:08:48 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/10 19:10:37 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/11 17:11:26 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,36 @@ void	ft_puterror(char *error)
 	ft_putchar_fd('\n', 2);
 }
 
-void	free_map(char **map)
+int	free_map(char **map)
 {
 	int	i;
 
 	i = 0;
+	if (!map)
+		return (-1);
 	while (map[i])
 	{
 		free(map[i]);
 		i++;
 	}
 	free(map);
+	return (0);
+}
+
+int	free_game_config(t_game_config *game_config)
+{
+	if (!game_config)
+		return (-1);
+	free_map(game_config->map);
+	free(game_config);
+	return (0);
+}
+
+int	free_vars(t_vars *vars)
+{
+	if (!vars)
+		return (-1);
+	free_game_config(vars->game_config);
+	free(vars);
+	return (0);
 }

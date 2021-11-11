@@ -6,24 +6,38 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:43:41 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/10 15:12:15 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/11 17:01:48 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static char	*remove_nl_from_line(char *line)
+{
+	char	line_len;
+
+	if (!line)
+		return (NULL);
+	line_len = ft_strlen(line);
+	if (line[line_len - 1] == '\n')
+		line = ft_realloc(line, line_len, line_len - 1);
+	return (line);
+}
+
 static void	read_map_from_fd(int fd, char ***map)
 {
-	int	i;
-	int	len;
-	int	ptr_size;
+	int		i;
+	int		len;
+	int		ptr_size;
+	char	*line;
 
 	i = 0;
 	len = 1;
 	ptr_size = sizeof(char *);
 	while (1)
 	{
-		(*map)[i] = get_next_line(fd);
+		line = get_next_line(fd);
+		(*map)[i] = remove_nl_from_line(line);
 		if (!(*map)[i])
 			return ;
 		if (i == len - 1)

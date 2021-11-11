@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:27:55 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 15:07:52 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/11 16:44:12 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	validate_map_shape(char **map)
 	while (map[i])
 	{
 		line_len_tmp = ft_strlen(map[i]);
-		if (map[i][line_len_tmp - 1] == '\n')
-			line_len_tmp--;
 		if (!line_len)
 			line_len = line_len_tmp;
 		else if (line_len != line_len_tmp)

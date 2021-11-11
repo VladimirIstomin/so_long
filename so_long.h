@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:40:52 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/10 18:43:13 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/11 16:31:58 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,36 @@
 # define KEY_S 1
 # define KEY_D 2
 
+# define TILE_RESOLUTION 64
+
 # include <stdio.h>
 # include "libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
+typedef struct s_game_config {
 	char	**map;
-}			t_vars;
+	int		n_collectibles;
+	int		is_exit_open;
+	int		player_x;
+	int		player_y;
+}			t_game_config;
 
-char	**parse_map(int fd);
-int		validate_map(char **map);
-void	free_map(char **map);
-int		validate_map_extension(char *file_name);
-void	ft_puterror(char *error);
-void	init_hooks(t_vars *vars);
-void	init_mlx(t_vars *vars);
+typedef struct s_vars {
+	void			*mlx;
+	void			*win;
+	t_game_config	*game_config;
+}					t_vars;
+
+char			**parse_map(int fd);
+int				validate_map(char **map);
+int				validate_map_extension(char *file_name);
+void			ft_puterror(char *error);
+void			init_hooks(t_vars *vars);
+void			init_mlx(t_vars *vars);
+t_game_config	*init_game_config(char *map_file);
+int				free_map(char **map);
+int				free_game_config(t_game_config *game_config);
+int				free_vars(t_vars *vars);
 
 #endif
