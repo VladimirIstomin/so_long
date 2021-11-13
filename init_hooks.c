@@ -6,11 +6,10 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:56:16 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/11 16:47:23 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/13 13:11:16 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "so_long.h"
 
 static int	exit_game_cross(t_vars *vars)
@@ -42,5 +41,6 @@ void	init_hooks(t_vars *vars)
 {
 	mlx_key_hook(vars->win, handle_key_press, vars);
 	mlx_hook(vars->win, 17, 0, exit_game_cross, vars);
+	render_window(vars);
 	mlx_loop(vars->mlx);
 }

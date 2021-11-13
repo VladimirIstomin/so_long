@@ -6,12 +6,11 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:21:04 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/11 17:17:19 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/13 13:01:32 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "mlx.h"
 
 static void	define_window_size(int *width, int *height, char **map)
 {
@@ -25,12 +24,11 @@ static void	define_window_size(int *width, int *height, char **map)
 	*height *= TILE_RESOLUTION;
 }
 
-void	init_mlx(t_vars *vars)
+void	init_mlx_window(t_vars *vars)
 {
 	int	width;
 	int	height;
 
 	define_window_size(&width, &height, vars->game_config->map);
-	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, width, height, "Minecraft - So long");
 }

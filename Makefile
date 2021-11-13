@@ -6,7 +6,8 @@ SRCS			= main.c utils.c parse_map.c\
 				map_validators/validate_map_shape.c\
 				map_validators/validate_player.c\
 				map_validators/validate_walls.c\
-				init_mlx.c init_hooks.c init_game_config.c
+				init_mlx_window.c init_hooks.c init_game_config.c\
+				render_window.c
 
 OBJ_DIR			= obj/
 
@@ -27,7 +28,7 @@ FLAGS			= -Wall -Werror -Wextra -O3 -MMD
 FLAGS_DEV		= -Wall -Werror -Wextra -g
 
 ${OBJ_DIR}%.o: 	%.c
-				${CC} ${FLAGS_DEV} -Imlx -c $< -o $@
+				${CC} ${FLAGS} -Imlx -c $< -o $@
 
 all:			${OBJ_DIR} ${NAME}
 

@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:08:48 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/11 17:11:26 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/13 12:57:42 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	free_game_config(t_game_config *game_config)
 	if (!game_config)
 		return (-1);
 	free_map(game_config->map);
+	if (!game_config->sprites)
+		free(game_config->sprites);
 	free(game_config);
 	return (0);
 }

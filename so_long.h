@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:40:52 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/11 16:31:58 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/13 13:59:50 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # define MAP_PLAYER 'P'
 # define MAP_EMPTY_SPACE '0'
 
+# define PATH_WALL "./textures/wall.xpm"
+# define PATH_ORE "./textures/ore/ore_0.xpm"
+# define PATH_EXIT_OPEN "./textures/exit_open.xpm"
+# define PATH_EXIT_CLOSED "./textures/exit_closed.xpm"
+# define PATH_PLAYER "./textures/steve/steve_0.xpm"
+# define PATH_EMPTY "./textures/empty.xpm"
+
 # define KEY_ESC 53
 # define KEY_W 13
 # define KEY_A 0
@@ -34,13 +41,25 @@
 # include "libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
+# include "mlx.h"
+
+typedef struct s_sprites
+{
+	void	*wall;
+	void	*collectible;
+	void	*exit_closed;
+	void	*exit_open;
+	void	*player;
+	void	*empty_space;
+}			t_sprites;
 
 typedef struct s_game_config {
-	char	**map;
-	int		n_collectibles;
-	int		is_exit_open;
-	int		player_x;
-	int		player_y;
+	char		**map;
+	t_sprites	*sprites;
+	int			n_collectibles;
+	int			is_exit_open;
+	int			player_x;
+	int			player_y;
 }			t_game_config;
 
 typedef struct s_vars {
@@ -54,8 +73,9 @@ int				validate_map(char **map);
 int				validate_map_extension(char *file_name);
 void			ft_puterror(char *error);
 void			init_hooks(t_vars *vars);
-void			init_mlx(t_vars *vars);
-t_game_config	*init_game_config(char *map_file);
+void			init_mlx_window(t_vars *vars);
+t_game_config	*init_game_config(void *mlx, char *map_file);
+void			render_window(t_vars *vars);
 int				free_map(char **map);
 int				free_game_config(t_game_config *game_config);
 int				free_vars(t_vars *vars);
