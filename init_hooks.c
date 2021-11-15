@@ -6,41 +6,36 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:56:16 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/13 14:56:07 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:56:14 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	exit_game_cross(t_vars *vars)
+int	exit_game(t_vars *vars)
 {
+	mlx_destroy_window(vars->mlx, vars->win);
 	free_vars(vars);
 	exit(0);
 }
 
 static int	handle_key_press(int keycode, t_vars *vars)
 {
-	// if (keycode == KEY_W)
-	// 	handle_go_up(vars);
-	// else if (keycode == KEY_A)
-	// 	handle_go_left(vars);
-	// else if (keycode == KEY_S)
-	// 	handle_go_down(vars);
-	// else if (keycode == KEY_D)
-	// 	handle_go_right(vars);
-	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		free_vars(vars);
-		exit(0);
-	}
+	if (keycode == KEY_W
+		|| keycode == KEY_A
+		|| keycode == KEY_S
+		|| keycode == KEY_D
+	)
+		handle_move(vars, keycode);
+	else if (keycode == KEY_ESC)
+		exit_game(vars);
 	return (0);
 }
 
 void	init_hooks(t_vars *vars)
 {
 	mlx_key_hook(vars->win, handle_key_press, vars);
-	mlx_hook(vars->win, 17, 0, exit_game_cross, vars);
+	mlx_hook(vars->win, 17, 0, exit_game, vars);
 	render_window(vars);
 	mlx_loop(vars->mlx);
 }

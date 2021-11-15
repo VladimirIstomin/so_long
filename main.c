@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:34:10 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/13 13:01:48 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:02:08 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ int	main(int argc, char **argv)
 	if (!vars)
 		return (0);
 	vars->mlx = mlx_init();
-	vars->game_config = init_game_config(vars->mlx, argv[1]);
-	init_mlx_window(vars);
-	if (!vars->game_config)
-		return (free_vars(vars));
-	init_hooks(vars);
+	if (vars->mlx)
+	{
+		vars->game = init_game(vars->mlx, argv[1]);
+		if (!vars->game)
+			return (free_vars(vars));
+		init_mlx_window(vars);
+		init_hooks(vars);
+	}
 	return (0);
 }

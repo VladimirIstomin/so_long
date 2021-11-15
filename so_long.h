@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:40:52 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/15 13:09:57 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:28:49 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,19 @@
 
 # define TILE_RESOLUTION 64
 
+# define FINISH_GAME "You've finished the game with total number of movements: "
+
 # include <stdio.h>
 # include "libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
 # include "mlx.h"
+
+typedef struct s_player_pos
+{
+	int	x;
+	int	y;
+}		t_player_pos;
 
 typedef struct s_sprites
 {
@@ -53,31 +61,35 @@ typedef struct s_sprites
 	void	*empty_space;
 }			t_sprites;
 
-typedef struct s_game_config {
-	char		**map;
-	t_sprites	*sprites;
-	int			n_collectibles;
-	int			is_exit_open;
-	int			player_x;
-	int			player_y;
-}			t_game_config;
+typedef struct s_game {
+	char			**map;
+	t_sprites		*sprites;
+	int				n_collectibles;
+	int				is_exit_open;
+	t_player_pos	*player_position;
+	char			under_player;
+	int				movements;
+}					t_game;
 
 typedef struct s_vars {
-	void			*mlx;
-	void			*win;
-	t_game_config	*game_config;
-}					t_vars;
+	void	*mlx;
+	void	*win;
+	t_game	*game;
+}			t_vars;
 
-char			**parse_map(int fd);
-int				validate_map(char **map);
-int				validate_map_extension(char *file_name);
-void			ft_puterror(char *error);
-void			init_hooks(t_vars *vars);
-void			init_mlx_window(t_vars *vars);
-t_game_config	*init_game_config(void *mlx, char *map_file);
-void			render_window(t_vars *vars);
-int				free_map(char **map);
-int				free_game_config(t_game_config *game_config);
-int				free_vars(t_vars *vars);
+char	**parse_map(int fd);
+int		validate_map(char **map);
+int		validate_map_extension(char *file_name);
+void	ft_puterror(char *error);
+void	init_hooks(t_vars *vars);
+void	init_mlx_window(t_vars *vars);
+t_game	*init_game(void *mlx, char *map_file);
+void	render_window(t_vars *vars);
+int		free_map(char **map);
+int		free_game(t_game *game);
+int		free_vars(t_vars *vars);
+int		exit_game(t_vars *vars);
+void	print_n_movemets(int movements);
+void	handle_move(t_vars *vars, int keycode);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:08:48 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/13 12:57:42 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:38:58 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ int	free_map(char **map)
 	return (0);
 }
 
-int	free_game_config(t_game_config *game_config)
+int	free_game(t_game *game)
 {
-	if (!game_config)
+	if (!game)
 		return (-1);
-	free_map(game_config->map);
-	if (!game_config->sprites)
-		free(game_config->sprites);
-	free(game_config);
+	free_map(game->map);
+	if (!game->sprites)
+		free(game->sprites);
+	if (game->player_position)
+		free(game->player_position);
+	free(game);
 	return (0);
 }
 
@@ -50,7 +52,14 @@ int	free_vars(t_vars *vars)
 {
 	if (!vars)
 		return (-1);
-	free_game_config(vars->game_config);
+	free_game(vars->game);
 	free(vars);
 	return (0);
+}
+
+void	print_n_movemets(int movements)
+{
+	ft_putstr_fd("Number of movements: ", 1);
+	ft_putnbr_fd(movements, 1);
+	ft_putchar_fd('\n', 1);
 }

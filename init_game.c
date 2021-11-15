@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game_config.c                                 :+:      :+:    :+:   */
+/*   init_game.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:19:13 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/13 14:01:20 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:38:52 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,18 @@ static char	**create_map(char *file_name)
 	return (map);
 }
 
-static void	define_player_position(t_game_config *game_config)
+static t_player_pos	*get_player_position(char **map)
 {
-	char	**map;
-	int		i;
-	int		j;
+	int				i;
+	int				j;
+	t_player_pos	*player_position;
 
+	if (!map)
+		return (NULL);
+	player_position = malloc(sizeof(t_player_pos));
+	if (!player_position)
+		return (NULL);
 	i = 0;
-	map = game_config->map;
 	while (map[i])
 	{
 		j = 0;
@@ -69,14 +73,14 @@ static void	define_player_position(t_game_config *game_config)
 		{
 			if (map[i][j] == MAP_PLAYER)
 			{
-				game_config->player_y = i;
-				game_config->player_x = j;
-				return ;
+				player_position->y = i;
+				player_position->x = j;
 			}
 			j++;
 		}
 		i++;
 	}
+	return (player_position);
 }
 
 static t_sprites	*initialize_sprites(void *mlx)
@@ -97,22 +101,24 @@ static t_sprites	*initialize_sprites(void *mlx)
 	return (sprites);
 }
 
-t_game_config	*init_game_config(void *mlx, char *map_file)
+t_game	*init_game(void *mlx, char *map_file)
 {
-	t_game_config	*game_config;
+	t_game	*game;
 
-	game_config = malloc(sizeof(t_game_config));
-	if (!game_config)
+	game = malloc(sizeof(t_game));
+	if (!game)
 		return (NULL);
-	game_config->map = create_map(map_file);
-	game_config->sprites = initialize_sprites(mlx);
-	if (!game_config->map || !game_config->sprites)
+	game->map = create_map(map_file);
+	game->sprites = initialize_sprites(mlx);
+	game->player_position = get_player_position(game->map);
+	if (!game->map || !game->sprites || !game->player_position)
 	{
-		free_game_config(game_config);
+		free_game(game);
 		return (0);
 	}
-	game_config->is_exit_open = 0;
-	game_config->n_collectibles = get_number_of_collectibles(game_config->map);
-	define_player_position(game_config);
-	return (game_config);
+	game->is_exit_open = 0;
+	game->movements = 0;
+	game->under_player = MAP_EMPTY_SPACE;
+	game->n_collectibles = get_number_of_collectibles(game->map);
+	return (game);
 }
