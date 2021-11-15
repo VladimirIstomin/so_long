@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:40:52 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/13 13:59:50 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:09:57 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PATH_ORE "./textures/ore/ore_0.xpm"
 # define PATH_EXIT_OPEN "./textures/exit_open.xpm"
 # define PATH_EXIT_CLOSED "./textures/exit_closed.xpm"
-# define PATH_PLAYER "./textures/steve/steve_0.xpm"
+# define PATH_PLAYER "./textures/steve.xpm"
 # define PATH_EMPTY "./textures/empty.xpm"
 
 # define KEY_ESC 53

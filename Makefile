@@ -28,7 +28,7 @@ FLAGS			= -Wall -Werror -Wextra -O3 -MMD
 FLAGS_DEV		= -Wall -Werror -Wextra -g
 
 ${OBJ_DIR}%.o: 	%.c
-				${CC} ${FLAGS} -Imlx -c $< -o $@
+				${CC} ${FLAGS_DEV} -I/usr/local/include -c $< -o $@
 
 all:			${OBJ_DIR} ${NAME}
 
@@ -40,7 +40,7 @@ ${OBJ_DIR}:
 				@mkdir -p ${OBJ_DIR}/map_validators
 
 ${NAME}:		${OBJS} ${LIBFT} ${HEADERS}
-				${CC} ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME} -Llibft -lft
+				${CC} ${OBJS} -L/usr/local/bin -lmlx -framework OpenGL -framework AppKit -o ${NAME} -Llibft -lft
 
 FORCE:			;
 
