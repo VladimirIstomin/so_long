@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:08:48 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/15 15:38:58 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:11:02 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,6 @@ int	free_map(char **map)
 		i++;
 	}
 	free(map);
-	return (0);
-}
-
-int	free_game(t_game *game)
-{
-	if (!game)
-		return (-1);
-	free_map(game->map);
-	if (!game->sprites)
-		free(game->sprites);
-	if (game->player_position)
-		free(game->player_position);
-	free(game);
-	return (0);
-}
-
-int	free_vars(t_vars *vars)
-{
-	if (!vars)
-		return (-1);
-	free_game(vars->game);
-	free(vars);
 	return (0);
 }
 

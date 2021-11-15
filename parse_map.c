@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:43:41 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/11 17:01:48 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 19:59:51 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*remove_nl_from_line(char *line)
 		return (NULL);
 	line_len = ft_strlen(line);
 	if (line[line_len - 1] == '\n')
-		line = ft_realloc(line, line_len, line_len - 1);
+		line = ft_realloc(line, line_len + 1, line_len);
 	return (line);
 }
 

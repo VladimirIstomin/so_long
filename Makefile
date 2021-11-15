@@ -25,7 +25,7 @@ CC				= gcc
 
 FLAGS			= -Wall -Werror -Wextra -O3 -MMD
 
-FLAGS_DEV		= -Wall -Werror -Wextra -g3
+FLAGS_DEV		= -Wall -Werror -Wextra -g3 -MMD
 
 ${OBJ_DIR}%.o: 	%.c
 				${CC} ${FLAGS_DEV} -I/usr/local/include -c $< -o $@

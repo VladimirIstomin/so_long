@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:21:04 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/15 15:56:39 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 18:35:55 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static void	define_window_size(int *width, int *height, char **map)
 	*height *= TILE_RESOLUTION;
 }
 
-void	init_mlx_window(t_vars *vars)
+void	init_mlx_window(t_game *game)
 {
 	int	width;
 	int	height;
 
-	define_window_size(&width, &height, vars->game->map);
-	vars->win = mlx_new_window(vars->mlx, width, height, "So_long");
+	define_window_size(&width, &height, game->map);
+	game->win = mlx_new_window(game->mlx, width, height, "So_long");
 }

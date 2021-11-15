@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:40:52 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/15 15:28:49 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/15 19:01:34 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,51 +45,35 @@
 # include <fcntl.h>
 # include "mlx.h"
 
-typedef struct s_player_pos
-{
-	int	x;
-	int	y;
-}		t_player_pos;
-
-typedef struct s_sprites
-{
+typedef struct s_game {
+	void	*mlx;
+	void	*win;
 	void	*wall;
 	void	*collectible;
 	void	*exit_closed;
 	void	*exit_open;
 	void	*player;
 	void	*empty_space;
-}			t_sprites;
-
-typedef struct s_game {
-	char			**map;
-	t_sprites		*sprites;
-	int				n_collectibles;
-	int				is_exit_open;
-	t_player_pos	*player_position;
-	char			under_player;
-	int				movements;
-}					t_game;
-
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-	t_game	*game;
-}			t_vars;
+	char	**map;
+	int		n_collectibles;
+	int		is_exit_open;
+	int		player_x;
+	int		player_y;
+	char	under_player;
+	int		movements;
+}			t_game;
 
 char	**parse_map(int fd);
 int		validate_map(char **map);
 int		validate_map_extension(char *file_name);
 void	ft_puterror(char *error);
-void	init_hooks(t_vars *vars);
-void	init_mlx_window(t_vars *vars);
-t_game	*init_game(void *mlx, char *map_file);
-void	render_window(t_vars *vars);
+void	init_hooks(t_game *game);
+void	init_mlx_window(t_game *game);
+void	init_game(t_game *game, char *map_file);
+void	render_window(t_game *game);
 int		free_map(char **map);
-int		free_game(t_game *game);
-int		free_vars(t_vars *vars);
-int		exit_game(t_vars *vars);
+int		exit_game(t_game *game);
 void	print_n_movemets(int movements);
-void	handle_move(t_vars *vars, int keycode);
+void	handle_move(t_game *game, int keycode);
 
 #endif
