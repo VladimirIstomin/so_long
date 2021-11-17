@@ -34,26 +34,6 @@ static int	get_number_of_collectibles(char **map)
 	return (number_of_collectibles);
 }
 
-static char	**create_map(char *file_name)
-{
-	int		fd;
-	char	**map;
-
-	if (!validate_map_extension(file_name))
-		return (NULL);
-	fd = open(file_name, O_RDONLY);
-	map = parse_map(fd);
-	close(fd);
-	if (!map)
-		return (NULL);
-	if (!validate_map(map))
-	{
-		free_map(map);
-		return (NULL);
-	}
-	return (map);
-}
-
 static void	init_player_position(t_game *game)
 {
 	int		i;

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   create_map_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:43:41 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/15 19:59:51 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:54:50 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static char	*remove_nl_from_line(char *line)
 {
@@ -51,7 +51,7 @@ static void	read_map_from_fd(int fd, char ***map)
 	}
 }
 
-char	**parse_map(int fd)
+static char	**parse_map(int fd)
 {
 	char	**map;
 
@@ -62,6 +62,26 @@ char	**parse_map(int fd)
 	if (!map[0])
 	{
 		ft_puterror(ERROR_MAP_PARSING);
+		free_map(map);
+		return (NULL);
+	}
+	return (map);
+}
+
+char	**create_map(char *file_name)
+{
+	int		fd;
+	char	**map;
+
+	if (!validate_map_extension(file_name))
+		return (NULL);
+	fd = open(file_name, O_RDONLY);
+	map = parse_map(fd);
+	close(fd);
+	if (!map)
+		return (NULL);
+	if (!validate_map(map))
+	{
 		free_map(map);
 		return (NULL);
 	}

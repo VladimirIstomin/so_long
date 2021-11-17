@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:01:22 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/15 18:58:39 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 13:11:15 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,26 @@
 
 static void	*get_image(t_game *game, char obj)
 {
+	void	*img;
+
 	if (obj == MAP_WALL)
-		return (game->wall);
+		img = game->wall;
 	else if (obj == MAP_COLLECTIBLE)
-		return (game->collectible);
+		img = game->collectible;
 	else if (obj == MAP_EXIT && game->is_exit_open)
-		return (game->exit_open);
+		img = game->exit_open;
 	else if (obj == MAP_EXIT && !game->is_exit_open)
-		return (game->exit_closed);
+		img = game->exit_closed;
 	else if (obj == MAP_PLAYER)
-		return (game->player);
+		img = game->player;
 	else
-		return (game->empty_space);
+		img = game->empty_space;
+	if (!img)
+	{
+		ft_puterror(ERROR_PARSE_SPRITE);
+		exit_game(game);
+	}
+	return (img);
 }
 
 void	render_window(t_game *game)

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validators.h                                   :+:      :+:    :+:   */
+/*   map_validators_bonus.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 12:28:09 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/09 16:38:44 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:02:04 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_VALIDATORS_H
-# define MAP_VALIDATORS_H
+#ifndef MAP_VALIDATORS_BONUS_H
+# define MAP_VALIDATORS_BONUS_H
 
 # define ERROR_INVALID_CHAR "Invalid char(s) in the map file."
 # define ERROR_NO_EXITS "No exits in the map."
@@ -22,8 +22,7 @@
 # define ERROR_INVALID_MAP_SHAPE "The map doesn't have rectangular shape."
 # define ERROR_INVALID_MAP_EXTENSION "The map file doesn't have .ber extension."
 
-# include "../so_long.h"
-# include "../libft/libft.h"
+# include "../so_long_bonus.h"
 
 int	validate_collectibles(char **map);
 int	validate_exits(char **map);
