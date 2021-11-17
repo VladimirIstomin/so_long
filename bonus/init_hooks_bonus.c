@@ -6,18 +6,11 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:56:16 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/17 15:31:37 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:14:02 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int	exit_game(t_game *game)
-{
-	mlx_destroy_window(game->mlx, game->win);
-	free_game(game);
-	exit(0);
-}
 
 static int	handle_key_press(int keycode, t_game *game)
 {
@@ -28,7 +21,7 @@ static int	handle_key_press(int keycode, t_game *game)
 	)
 		handle_move(game, keycode);
 	else if (keycode == KEY_ESC)
-		exit_game(game);
+		exit_game(game, NULL);
 	return (0);
 }
 

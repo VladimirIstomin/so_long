@@ -67,12 +67,12 @@ static void	init_enemy_sprites(t_game *game)
 
 	enemy = malloc(sizeof(t_enemy));
 	if (!enemy)
-		exit_game(game);
+		exit_game(game, ERROR_PARSE_SPRITE);
 	enemy->sprite_index = 0;
 	game->enemy = enemy;
 	enemy_sprites = malloc(sizeof(void *) * 10);
 	if (!enemy_sprites)
-		exit_game(game);
+		exit_game(game, ERROR_PARSE_SPRITE);
 	enemy->sprites = enemy_sprites;
 	enemy->sprites[0] = mlx_xpm_file_to_image(game->mlx, PATH_ENEMY_0, &w, &h);
 	enemy->sprites[1] = mlx_xpm_file_to_image(game->mlx, PATH_ENEMY_1, &w, &h);

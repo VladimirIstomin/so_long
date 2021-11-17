@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:40:52 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/17 15:51:56 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:18:49 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	init_mlx_window(t_game *game);
 void	init_game(t_game *game, char *map_file);
 void	render_window(t_game *game);
 int		free_map(char **map);
-int		exit_game(t_game *game);
+int		exit_game(t_game *game, char *error);
 void	print_n_movemets(int movements);
 void	handle_move(t_game *game, int keycode);
 

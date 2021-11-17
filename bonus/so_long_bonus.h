@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:40:52 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/17 15:54:57 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:20:17 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	render_window(t_game *game);
 int		animate_enemies(t_game *game);
 int		free_game(t_game *game);
 int		free_map(char **map);
-int		exit_game(t_game *game);
+int		exit_game(t_game *game, char *error);
 void	print_n_movemets(t_game *game);
 void	handle_move(t_game *game, int keycode);
 

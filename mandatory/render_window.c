@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:01:22 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/17 13:11:15 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:19:24 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ static void	*get_image(t_game *game, char obj)
 	else
 		img = game->empty_space;
 	if (!img)
-	{
-		ft_puterror(ERROR_PARSE_SPRITE);
-		exit_game(game);
-	}
+		exit_game(game, ERROR_PARSE_SPRITE);
 	return (img);
 }
 

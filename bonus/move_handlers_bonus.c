@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 13:26:39 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/17 15:29:26 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:16:31 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	handle_game_finish(t_game *game, int is_won)
 	else
 		ft_putstr_fd(LOST_GAME, 1);
 	ft_putchar_fd('\n', 1);
-	exit_game(game);
+	exit_game(game, NULL);
 }
 
 static void	handle_reach_collectible(t_game *game, int x_new, int y_new)

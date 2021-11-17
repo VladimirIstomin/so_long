@@ -6,7 +6,7 @@
 /*   By: gmerlene <gmerlene@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:08:48 by gmerlene          #+#    #+#             */
-/*   Updated: 2021/11/17 15:32:03 by gmerlene         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:13:42 by gmerlene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ int	free_game(t_game *game)
 		free(game->enemy);
 	}
 	return (0);
+}
+
+int	exit_game(t_game *game, char *error)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	free_game(game);
+	if (error)
+		ft_puterror(error);
+	exit(0);
 }
 
 int	free_map(char **map)
